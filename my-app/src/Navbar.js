@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState} from 'react';
 import { Link } from 'react-router-dom';
 import logo from './icone-de-nuage-noir.png';
 import {useSelector} from "react-redux";
@@ -6,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import './App.css'; // Import the CSS file
 
 const Navbar = () => {
+    const [rerender, setRerender] = useState(false);
     const logout = useSelector((state) => state.user.value.logoutFunc);
     const navigate = useNavigate();
     const logoutFunc = () => {
         if (logout) {
             logout();
+            setRerender(!rerender);
             navigate(`/`);
           }
     }

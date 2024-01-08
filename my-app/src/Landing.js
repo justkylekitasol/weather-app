@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import {login, logout} from './store.ts';
 import {useDispatch} from "react-redux";
 
+//credentials from github
 const CLIENT_ID = "2b7e4957f446b236ff57";
 
 const Landing = () => {
@@ -17,8 +18,9 @@ const Landing = () => {
         const codeParam = urlParams.get("code");
         console.log(codeParam);
 
+        //check if local storage has no saved access token, token is from github login
         if(codeParam && (localStorage.getItem("accessToken") === null)) {
-            async function getUserData() {
+            async function getUserData() { //function to get user data
                 await fetch("http://localhost:4000/getUserData", {
                     method: "GET",
                     headers: {
@@ -33,7 +35,7 @@ const Landing = () => {
                     navigate(`/home`);
                 })
             }
-            async function getAccessToken() {
+            async function getAccessToken() { //function to get access token to be stored in local storage
                 await fetch("http://localhost:4000/getAccessToken?code=" +codeParam, {
                     method: "GET"
                 }).then((response) => {
@@ -51,10 +53,10 @@ const Landing = () => {
         }
     }, []);
 
-    function loginWithGithub() {
+    function loginWithGithub() { //login function
         window.location.assign(`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`)
     }
-    function logout() {
+    function logout() { //logout function, removes access token then loads
         localStorage.removeItem("accessToken");
         setRerender(!rerender);
     }

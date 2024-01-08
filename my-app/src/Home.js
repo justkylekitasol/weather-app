@@ -4,14 +4,15 @@ import {useSelector} from "react-redux";
 const Home = () => {
   const [city, setCity] = useState('');
   const navigate = useNavigate();
+  const username = useSelector((state) => state.user.value.username); //redux getters
+  const url = useSelector((state) => state.user.value.url); //redux getters
 
-  const goToWeatherPage = () => {
+  const goToWeatherPage = () => { //function to get city then navigate to weather page after button click
     navigate(`/weather/${city}`);
   };
-  const username = useSelector((state) => state.user.value.username);
-  const url = useSelector((state) => state.user.value.url);
+  
   useEffect(() => {
-    if(localStorage.getItem("accessToken")){
+    if(localStorage.getItem("accessToken")){ //if localstorage has accesstoken, proceed, else go to landing page
         console.log("ok")
     }else {
         navigate(`/`);

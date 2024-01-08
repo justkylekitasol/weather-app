@@ -9,7 +9,7 @@ const Weather = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getWeatherData = async () => {
+    const getWeatherData = async () => {    //gets weather data from API
       try {
         const apiKey = '0c3da92fdfefca69903592f2b8f29a7a';
         const response = await axios.get(
@@ -32,16 +32,16 @@ const Weather = () => {
         year: 'numeric',
       });
   
-      setCurrentDate(formattedDate);
-    if(localStorage.getItem("accessToken")){
+    setCurrentDate(formattedDate);
+
+    if(localStorage.getItem("accessToken")){    //if localstorage has accesstoken, proceed, else go to landing page
         console.log("ok")
     }else {
         navigate(`/`);
     }
   }, [city]);
 
-  const goBack = () => {
-    // Use the navigate function to go back to the previous page
+  const goBack = () => {    // Use the navigate function to go back to the previous page
     navigate(-1);
   };
 

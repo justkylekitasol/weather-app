@@ -13,14 +13,11 @@ const userSlice = createSlice({
     reducers: {
         login: (state, action) => {
             state.value = action.payload;
-        },
-        logout: (state) => {
-            state = initialState;
         }
     }
 })
 
-export const {login, logout} = userSlice.actions;
+export const {login} = userSlice.actions;
 
 export const store = configureStore({
     reducer: {
