@@ -4,6 +4,7 @@ const fetch = (...args) =>
     import('node-fetch').then(({default: fetch}) => fetch(...args));
 var bodyParser = require('body-parser');
 
+//github credentials
 const CLIENT_ID = "2b7e4957f446b236ff57";
 const CLIENT_SECRET = "6400267924addc48e8ee799279759a22ded955d3";
 
